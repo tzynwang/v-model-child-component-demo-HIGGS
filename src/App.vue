@@ -2,11 +2,11 @@
   <div id="app">
     <div>
       data 2-way binding in component:
-      <span class="highlight">{{ componentValue1 }}</span>
+      <span class="highlight">{{ componentValue }}</span>
     </div>
     <inputComponent
       class="input"
-      :component-value="componentValue1"
+      :component-value="componentValue"
       @child-input-value-change="childInputValueChange"
       autofocus
     />
@@ -23,12 +23,12 @@ export default {
   },
   data() {
     return {
-      componentValue1: "hello world",
+      componentValue: "hello world",
     };
   },
   methods: {
     childInputValueChange(value) {
-      this.componentValue1 = value;
+      this.componentValue = value;
     },
   },
 };
