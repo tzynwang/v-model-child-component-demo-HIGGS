@@ -1,19 +1,37 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div>
+      data 2-way binding in component:
+      <span class="highlight">{{ componentValue1 }}</span>
+    </div>
+    <inputComponent
+      class="input"
+      :component-value="componentValue1"
+      @child-input-value-change="childInputValueChange"
+      autofocus
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import inputComponent from "./components/inputComponent.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    inputComponent,
+  },
+  data() {
+    return {
+      componentValue1: "hello world",
+    };
+  },
+  methods: {
+    childInputValueChange(value) {
+      this.componentValue1 = value;
+    },
+  },
+};
 </script>
 
 <style>
@@ -24,5 +42,20 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.highlight {
+  color: red;
+}
+
+.input {
+  margin-top: 1rem;
+  padding: 0.5rem;
+
+  outline: none;
+  border: 1px solid #2c3e50;
+
+  font-family: inherit;
+  font-size: inherit;
 }
 </style>
